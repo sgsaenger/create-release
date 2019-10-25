@@ -39,6 +39,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
       .mockReturnValueOnce('false')
+      .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
 
     await run();
@@ -60,6 +61,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('false')
       .mockReturnValueOnce('true')
       .mockReturnValueOnce('false');
 
@@ -83,6 +85,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
       .mockReturnValueOnce('false')
+      .mockReturnValueOnce('false')
       .mockReturnValueOnce('true');
 
     await run();
@@ -105,6 +108,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('') // <-- The default value for body in action.yml
       .mockReturnValueOnce('false')
+      .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
 
     await run();
@@ -120,12 +124,59 @@ describe('Create Release', () => {
     });
   });
 
+  test('Create release endpoint is called when an existing tag does not exist', async () => {
+    core.getInput = jest
+      .fn()
+      .mockReturnValueOnce('refs/tags/v1.0.0')
+      .mockReturnValueOnce('myRelease')
+      .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('true')
+      .mockReturnValueOnce('false')
+      .mockReturnValueOnce('false');
+
+    await run();
+
+    expect(createRelease).toHaveBeenCalledWith({
+      owner: 'owner',
+      repo: 'repo',
+      tag_name: 'v1.0.0',
+      name: 'myRelease',
+      body: 'myBody',
+      draft: false,
+      prerelease: false
+    });
+  });
+
+  test('Older release is deleted', async () => {
+    core.getInput = jest
+      .fn()
+      .mockReturnValueOnce('refs/tags/v1.0.0')
+      .mockReturnValueOnce('myRelease')
+      .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('true')
+      .mockReturnValueOnce('false')
+      .mockReturnValueOnce('false');
+
+    await run();
+
+    expect(createRelease).toHaveBeenCalledWith({
+      owner: 'owner',
+      repo: 'repo',
+      tag_name: 'v1.0.0',
+      name: 'myRelease',
+      body: 'myBody',
+      draft: false,
+      prerelease: false
+    });
+  });
+
   test('Outputs are set', async () => {
     core.getInput = jest
       .fn()
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
 
@@ -144,6 +195,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
 
