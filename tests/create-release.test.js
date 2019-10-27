@@ -52,7 +52,9 @@ describe('Create Release', () => {
 
     getReleaseByTag = jest.fn().mockReturnValueOnce({
       data: {
-        id: 'releaseId'
+        id: 'releaseId',
+        html_url: 'htmlUrl',
+        upload_url: 'uploadUrl'
       }
     });
 
@@ -209,6 +211,8 @@ describe('Create Release', () => {
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
 
+    core.setOutput = jest.fn();
+
     await run();
 
     expect(getRef).toHaveBeenCalledWith({
@@ -217,17 +221,13 @@ describe('Create Release', () => {
       ref: 'tags/existing'
     });
 
-    expect(getReleaseByTag).toHaveBeenCalledTimes(0);
+    expect(deleteRelease).toHaveBeenCalledTimes(0);
 
-    expect(createRelease).toHaveBeenCalledWith({
-      owner: 'owner',
-      repo: 'repo',
-      tag_name: 'existing',
-      name: 'myRelease',
-      body: 'myBody',
-      draft: false,
-      prerelease: false
-    });
+    expect(createRelease).toHaveBeenCalledTimes(0);
+
+    expect(core.setOutput).toHaveBeenNthCalledWith(1, 'id', 'releaseId');
+    expect(core.setOutput).toHaveBeenNthCalledWith(2, 'html_url', 'htmlUrl');
+    expect(core.setOutput).toHaveBeenNthCalledWith(3, 'upload_url', 'uploadUrl');
   });
 
   test('Older release is deleted', async () => {
