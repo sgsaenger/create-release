@@ -14,6 +14,7 @@ For more information on these inputs, see the [API Documentation](https://develo
 - `release_name`: The name of the release
 - `body`: Text describing the contents of the release
 - `replace_old_tag`: `true` to replace a tag of the same name if it points to another commit, `false` otherwise. Default: `false`
+- `target_commitish`: Commitish value specifying commit/branch where tag is created. Ignored if tag exists and not to be replaced. Default: `master`
 - `draft`: `true` to create a draft (unpublished) release, `false` to create a published one. Default: `false`
 - `prerelease`: `true` to identify the release as a prerelease. `false` to identify the release as a full release. Default `false`
 
@@ -55,6 +56,7 @@ jobs:
             Changes in this Release
             - First Change
             - Second Change
+          target_commitish: $GITHUB_SHA
           draft: false
           prerelease: false
 ```
