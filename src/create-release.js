@@ -16,6 +16,7 @@ async function run() {
     const tag = tagName.replace('refs/tags/', '');
     const releaseName = core.getInput('release_name', { required: true }).replace('refs/tags/', '');
     const body = core.getInput('body', { required: false });
+    const targetCommitish = core.getInput('target_commitish', { required: false });
     const replaceOldTag = core.getInput('replace_old_tag', { required: false }) === 'true';
     const draft = core.getInput('draft', { required: false }) === 'true';
     const prerelease = core.getInput('prerelease', { required: false }) === 'true';
@@ -90,6 +91,7 @@ async function run() {
         repo,
         tag_name: tag,
         name: releaseName,
+        target_commitish: targetCommitish,
         body,
         draft,
         prerelease

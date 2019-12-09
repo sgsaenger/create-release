@@ -11,6 +11,10 @@ inputs:
   body:
     description: 'Text describing the contents of the tag.'
     required: false
+  target_commitish:
+    description: 'The commitish value that determines where the git tag is created. Default: `master`'
+    required: false
+    default: master
   replace_old_tag:
     description: 'Whether to delete an older tag (not for this commit) if the same tag name is found'
     required: false

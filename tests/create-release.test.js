@@ -84,6 +84,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
@@ -96,6 +97,7 @@ describe('Create Release', () => {
       tag_name: 'v1.0.0',
       name: 'myRelease',
       body: 'myBody',
+      target_commitish: 'myCommit',
       draft: false,
       prerelease: false
     });
@@ -107,6 +109,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('true')
       .mockReturnValueOnce('false');
@@ -119,6 +122,7 @@ describe('Create Release', () => {
       tag_name: 'v1.0.0',
       name: 'myRelease',
       body: 'myBody',
+      target_commitish: 'myCommit',
       draft: true,
       prerelease: false
     });
@@ -130,6 +134,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('true');
@@ -142,6 +147,7 @@ describe('Create Release', () => {
       tag_name: 'v1.0.0',
       name: 'myRelease',
       body: 'myBody',
+      target_commitish: 'myCommit',
       draft: false,
       prerelease: true
     });
@@ -153,6 +159,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('') // <-- The default value for body in action.yml
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
@@ -165,6 +172,7 @@ describe('Create Release', () => {
       tag_name: 'v1.0.0',
       name: 'myRelease',
       body: '',
+      target_commitish: 'myCommit',
       draft: false,
       prerelease: false
     });
@@ -176,6 +184,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('true')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
@@ -196,6 +205,7 @@ describe('Create Release', () => {
       tag_name: 'v1.0.0',
       name: 'myRelease',
       body: 'myBody',
+      target_commitish: 'myCommit',
       draft: false,
       prerelease: false
     });
@@ -207,6 +217,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/existing')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('true')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
@@ -236,6 +247,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/replaceExisting')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('true')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
@@ -260,6 +272,7 @@ describe('Create Release', () => {
       tag_name: 'replaceExisting',
       name: 'myRelease',
       body: 'myBody',
+      target_commitish: 'myCommit',
       draft: false,
       prerelease: false
     });
@@ -271,6 +284,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
@@ -290,6 +304,7 @@ describe('Create Release', () => {
       .mockReturnValueOnce('refs/tags/v1.0.0')
       .mockReturnValueOnce('myRelease')
       .mockReturnValueOnce('myBody')
+      .mockReturnValueOnce('myCommit')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false')
       .mockReturnValueOnce('false');
